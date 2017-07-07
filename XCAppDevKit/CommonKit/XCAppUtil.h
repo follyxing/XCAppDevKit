@@ -55,6 +55,34 @@ CGFloat XCScreenWidth();
 CGFloat XCScreenHeight();
 
 /**
+ Home path
+
+ @return home path
+ */
+NSString * XCHomePath();
+
+/**
+ Document path
+
+ @return document path
+ */
+NSString * XCDocumentPath();
+
+/**
+ Cache path
+
+ @return cache path
+ */
+NSString * XCCachePath();
+
+/**
+ Tmp path
+
+ @return tmp path
+ */
+NSString * XCTmpPath();
+
+/**
  *  @brief Check whether location services available. This is an expensive call. It should not be called frequently or from performance sensitive code.
  *
  *  @return YES if location services enabled and authorized, NO otherwise.
