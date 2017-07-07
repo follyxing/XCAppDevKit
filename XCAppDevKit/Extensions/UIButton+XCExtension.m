@@ -15,12 +15,16 @@ static char rightNameKey;
 static char bottomNameKey;
 static char leftNameKey;
 
-- (void)setEnlargeEdge:(UIEdgeInsets)edge
+- (void)setEnlargeTouchArea:(CGFloat)area
 {
-    objc_setAssociatedObject(self, &topNameKey, [NSNumber numberWithFloat:edge.top], OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(self, &rightNameKey, [NSNumber numberWithFloat:edge.right], OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(self, &bottomNameKey, [NSNumber numberWithFloat:edge.bottom], OBJC_ASSOCIATION_COPY_NONATOMIC);
-    objc_setAssociatedObject(self, &leftNameKey, [NSNumber numberWithFloat:edge.left], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self setEnlargeEdgeWithTop:area left:area bottom:area right:area];
+}
+- (void)setEnlargeEdgeWithTop:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right
+{
+    objc_setAssociatedObject(self, &topNameKey, [NSNumber numberWithFloat:top], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &rightNameKey, [NSNumber numberWithFloat:right], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &bottomNameKey, [NSNumber numberWithFloat:bottom], OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, &leftNameKey, [NSNumber numberWithFloat:left], OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (CGRect) enlargedRect

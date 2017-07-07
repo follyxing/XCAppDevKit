@@ -10,5 +10,7 @@
 
 @interface UIButton (XCExtension)
 
-- (void)setEnlargeEdge:(UIEdgeInsets)edge;
+- (void)setEnlargeTouchArea:(CGFloat)area;
+
+- (void)setEnlargeEdgeWithTop:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right;
 @end
