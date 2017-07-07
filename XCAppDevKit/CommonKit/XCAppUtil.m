@@ -38,7 +38,24 @@ CGFloat XCScreenHeight()
 {
     return  [[UIScreen mainScreen] bounds].size.height;
 }
-
+NSString * XCHomePath()
+{
+    return NSHomeDirectory();
+}
+NSString * XCDocumentPath()
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [paths firstObject];
+}
+NSString * XCCachePath()
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    return [paths firstObject];
+}
+NSString * XCTmpPath()
+{
+    return NSTemporaryDirectory();
+}
 BOOL XCIsLocationServicesAvailableOrNotDetermined()
 {
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
