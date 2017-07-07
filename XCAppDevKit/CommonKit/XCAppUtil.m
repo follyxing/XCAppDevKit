@@ -29,6 +29,16 @@ BOOL XCIsBelowIOS10()
 {
     return ![UIImage instancesRespondToSelector:@selector(imageRendererFormat)];
 }
+CGFloat XCScreenWidth()
+{
+    return  [[UIScreen mainScreen] bounds].size.width;
+}
+
+CGFloat XCScreenHeight()
+{
+    return  [[UIScreen mainScreen] bounds].size.height;
+}
+
 BOOL XCIsLocationServicesAvailableOrNotDetermined()
 {
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];

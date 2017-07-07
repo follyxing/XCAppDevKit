@@ -38,6 +38,22 @@ BOOL XCIsBelowIOS9();
  */
 BOOL XCIsBelowIOS10();
 
+
+/**
+ Screen Width
+
+ @return width of screen
+ */
+CGFloat XCScreenWidth();
+
+
+/**
+ Screen Height
+
+ @return height of screen
+ */
+CGFloat XCScreenHeight();
+
 /**
  *  @brief Check whether location services available. This is an expensive call. It should not be called frequently or from performance sensitive code.
  *
