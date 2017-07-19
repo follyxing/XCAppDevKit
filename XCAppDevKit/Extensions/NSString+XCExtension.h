@@ -208,7 +208,7 @@
 //- (NSString *)URLDecode;
 //- (NSString *)URLDecodeUsingEncoding:(NSStringEncoding)encoding;
 
-#pragma - PinYin
+#pragma mark - PinYin
 ///@"zhōng wén"
 - (NSString*)pinyinWithPhoneticSymbol;
 ///@"zhong wen"
@@ -222,5 +222,21 @@
 ///	@"zw"
 - (NSString*)pinyinInitialsString;
 
+#pragma mark - Util
+
 -(instancetype )trim;
+
+/**
+ String is nil , NSNULL or length <0
+
+ @return isEmpty
+ */
+- (BOOL)isEmpty;
+
+/**
+ String is @"" ,nil , NSNULL or length <0
+
+ @return isEmptyString
+ */
+- (BOOL)isEmptyString;
 @end

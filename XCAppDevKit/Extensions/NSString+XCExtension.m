@@ -344,4 +344,17 @@
 -(NSString *)trim{
     return  [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
+
+- (BOOL)isEmpty {
+    if ([self length] <= 0 || self == (id)[NSNull null] || self == nil) {
+        return YES;
+    }
+    return NO;
+}
+- (BOOL)isEmptyString{
+    if ([@"" isEqualToString:self] || [self length] <= 0 || self == (id)[NSNull null] || self == nil) {
+        return YES;
+    }
+    return NO;
+}
 @end
