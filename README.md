@@ -2,7 +2,21 @@
 iOS App development tools 
 
 
+## Installation
 
+- using CocoaPods
+
+### Podfile
+```
+platform :ios, '7.0'
+pod 'XCAppDevKit'
+```
+
+### Import headers in your source files
+
+```
+#import <XCAppDevKit.h>
+```
 # MIT License
 
 Copyright (c) 2017 XingCheng
