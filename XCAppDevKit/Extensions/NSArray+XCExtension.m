@@ -19,8 +19,4 @@
 }
 
 
-- (id)firstObject
-{
-    return self.count > 0 ? self[ 0 ] : nil;
-}
 @end

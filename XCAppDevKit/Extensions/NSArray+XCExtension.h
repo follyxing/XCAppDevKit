@@ -12,5 +12,4 @@
 
 -(id)safeObjectAtIndex:(NSInteger)index;
 
-- (id)firstObject;
 @end

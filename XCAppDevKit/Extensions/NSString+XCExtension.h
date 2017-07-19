@@ -239,4 +239,18 @@
  @return isEmptyString
  */
 - (BOOL)isEmptyString;
+
+
+/**
+ support system method containsString: under ios 8.0
+ */
+-(BOOL)containsString:(NSString *)str;
+
+/**
+ replace string from dictionary
+
+ @param dict @{@"current string":@"target string"}
+ @return string
+ */
+- (NSString *)stringByReplacingStringsFromDictionary:(NSDictionary *)dict;
 @end

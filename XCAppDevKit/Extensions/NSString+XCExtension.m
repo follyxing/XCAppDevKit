@@ -357,4 +357,21 @@
     }
     return NO;
 }
+
+- (BOOL)containsString:(NSString *)str {
+    NSRange aRange = [self rangeOfString:str];
+    if (aRange.location == NSNotFound) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (NSString*)stringByReplacingStringsFromDictionary:(NSDictionary*)dict {
+    NSMutableString* string = [self mutableCopy];
+    for (NSString* target in dict) {
+        [string replaceOccurrencesOfString:target withString:[dict objectForKey:target] options:0 range:NSMakeRange(0, [string length])];
+    }
+    return string;
+}
 @end

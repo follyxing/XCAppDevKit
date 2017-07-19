@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "XCAppDevKit"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.ios.deployment_target = '7.0'
   s.summary      = "iOS App development tools. All in One !"
   s.homepage     = "https://github.com/follyxing/XCAppDevKit"
