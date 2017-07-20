@@ -15,6 +15,14 @@
 
 #import "UIButton+XCExtension.h"
 
+#import "NSData+XCExtension.h"
+
+#import "NSString+XCExtension.h"
+
+#import "UITextField+XCExtension.h"
+
+#import "UIView+XCExtension.h"
+
 #import "XCAppUtil.h"
 
 #endif /* XCAppDevKit_h */

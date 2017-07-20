@@ -162,19 +162,30 @@
     }]];
 }
 #pragma mark - frame
-- (void)setSize:(CGSize)size
+
+- (void)setX:(CGFloat)x
 {
+    if (isnan(x)) return;
     CGRect frame = self.frame;
-    frame.size = size;
+    frame.origin.x = x;
     self.frame = frame;
 }
-- (CGSize)size
+
+- (void)setY:(CGFloat)y
 {
-    return self.frame.size;
+    CGRect frame = self.frame;
+    frame.origin.y = y;
+    self.frame = frame;
 }
-- (CGFloat)width
+
+- (CGFloat)x
 {
-    return self.size.width;
+    return self.frame.origin.x;
+}
+
+- (CGFloat)y
+{
+    return self.frame.origin.y;
 }
 
 - (void)setWidth:(CGFloat)width
@@ -184,11 +195,6 @@
     self.frame = frame;
 }
 
-- (CGFloat)height
-{
-    return self.size.height;
-}
-
 - (void)setHeight:(CGFloat)height
 {
     CGRect frame = self.frame;
@@ -196,25 +202,63 @@
     self.frame = frame;
 }
 
-- (CGFloat)x
+- (CGFloat)height
+{
+    return self.frame.size.height;
+}
+
+- (CGFloat)width
+{
+    return self.frame.size.width;
+}
+
+- (void)setSize:(CGSize)size
+{
+    CGRect frame = self.frame;
+    frame.size = size;
+    self.frame = frame;
+}
+
+- (CGSize)size
+{
+    return self.frame.size;
+}
+
+- (void)setOrigin:(CGPoint)origin
+{
+    CGRect frame = self.frame;
+    frame.origin = origin;
+    self.frame = frame;
+}
+
+- (CGPoint)origin
+{
+    return self.frame.origin;
+}
+
+- (void)setCenterX:(CGFloat)centerX
+{
+    CGPoint center = self.center;
+    center.x = centerX;
+    self.center = center;
+    
+}
+- (CGFloat)centerX
+{
+    return self.center.x;
+}
+- (void)setCenterY:(CGFloat)centerY
+{
+    CGPoint center = self.center;
+    center.y = centerY;
+    self.center = center;
+    
+}
+- (CGFloat)centerY
 {
     return self.center.x;
 }
 
-- (void)setX:(CGFloat)x
-{
-    self.center = CGPointMake(x, self.center.y);
-}
-
-- (CGFloat)y
-{
-    return self.center.y;
-}
-
-- (void)setY:(CGFloat)y
-{
-    self.center = CGPointMake(self.center.x, y);
-}
 
 - (void)setRoundedCorners:(UIRectCorner)corners radius:(CGSize)size {
     UIBezierPath* maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:size];
