@@ -240,7 +240,12 @@
  */
 - (BOOL)isEmptyString;
 
-
+/**
+ String is phone number
+ 
+ @return is phone number
+ */
+-(BOOL)isPhoneNumber;
 /**
  support system method containsString: under ios 8.0
  */
