@@ -23,6 +23,8 @@
 
 #import "UIView+XCExtension.h"
 
+#import "UITextView+XCExtension.h"
+
 #import "XCAppUtil.h"
 
 #endif /* XCAppDevKit_h */

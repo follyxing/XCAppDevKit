@@ -11,6 +11,12 @@
 @interface XCAppUtil : NSObject
 
 /**
+ value of [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
+ @return app version
+ */
+NSString * XCAppVersion();
+/**
  *  @brief Check device's OS version is below iOS 7.
  *
  *  @return YES if OS verion is below 7.

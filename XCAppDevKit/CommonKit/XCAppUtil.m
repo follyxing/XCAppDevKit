@@ -10,6 +10,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 @implementation XCAppUtil
+NSString * XCAppVersion()
+{
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+}
 BOOL XCIsBelowIOS7()
 {
     return ![UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)];
