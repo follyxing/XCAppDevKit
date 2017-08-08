@@ -27,4 +27,5 @@
 
 #import "XCAppUtil.h"
 
+#import "XCVerticalAlignmentLabel.h"
 #endif /* XCAppDevKit_h */
