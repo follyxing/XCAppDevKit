@@ -246,6 +246,13 @@
  @return is phone number
  */
 -(BOOL)isPhoneNumber;
+
+/**
+ String is number
+
+ @return is number
+ */
+- (BOOL)xc_isNumber;
 /**
  support system method containsString: under ios 8.0
  */

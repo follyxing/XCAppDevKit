@@ -377,6 +377,21 @@
     }
     return NO;
 }
+- (BOOL)xc_isNumber {
+    BOOL res = YES;
+    NSCharacterSet* tmpSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    int i = 0;
+    while (i < self.length) {
+        NSString * string = [self substringWithRange:NSMakeRange(i, 1)];
+        NSRange range = [string rangeOfCharacterFromSet:tmpSet];
+        if (range.length == 0) {
+            res = NO;
+            break;
+        }
+        i++;
+    }
+    return res;
+}
 - (BOOL)isEmptyString{
     if ([@"" isEqualToString:self] || [self length] <= 0 || self == (id)[NSNull null] || self == nil) {
         return YES;

@@ -28,4 +28,6 @@
 #import "XCAppUtil.h"
 
 #import "XCVerticalAlignmentLabel.h"
+
+#import "XCURLParser.h"
 #endif /* XCAppDevKit_h */
