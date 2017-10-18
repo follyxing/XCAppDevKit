@@ -27,6 +27,17 @@
     return [dir stringByAppendingPathComponent:[self lastPathComponent]];
 }
 
++ (NSString *)cachePath {
+    return [@"" cachePath];
+}
+
++ (NSString *)documentPath {
+    return [@"" documentPath];
+}
+
++ (NSString *)tmpPath {
+    return [@"" tmpPath];
+}
 
 
 #pragma mark - 散列函数

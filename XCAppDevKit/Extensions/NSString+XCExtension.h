@@ -17,6 +17,12 @@
 
 - (NSString *)tmpPath;
 
++ (NSString *)cachePath;
+
++ (NSString *)documentPath;
+
++ (NSString *)tmpPath;
+
 #pragma mark - 散列函数
 /**
  *  计算MD5散列结果

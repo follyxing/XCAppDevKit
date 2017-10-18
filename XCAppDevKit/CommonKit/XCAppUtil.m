@@ -33,6 +33,11 @@ BOOL XCIsBelowIOS10()
 {
     return ![UIImage instancesRespondToSelector:@selector(imageRendererFormat)];
 }
+BOOL XCIsBelowIOS11()
+{
+    return ![UITableView instancesRespondToSelector:@selector(tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:)];
+}
+
 CGFloat XCScreenWidth()
 {
     return  [[UIScreen mainScreen] bounds].size.width;
