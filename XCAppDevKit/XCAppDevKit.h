@@ -23,6 +23,8 @@
 
 #import "UIView+XCExtension.h"
 
+#import "NSBundle+XCLocalized.h"
+
 #import "UITextView+XCExtension.h"
 
 #import "XCAppUtil.h"
