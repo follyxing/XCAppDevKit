@@ -93,6 +93,13 @@ NSString * XCCachePath(void);
 NSString * XCTmpPath(void);
 
 /**
+ Current application language
+
+ @return current language
+ */
+NSString * XCCurrentLanguage();
+
+/**
  *  @brief Check whether location services available. This is an expensive call. It should not be called frequently or from performance sensitive code.
  *
  *  @return YES if location services enabled and authorized, NO otherwise.

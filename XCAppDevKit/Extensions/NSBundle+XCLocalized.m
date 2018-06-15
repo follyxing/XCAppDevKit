@@ -1,98 +1,46 @@
 
 #import "NSBundle+XCLocalized.h"
 #import <objc/runtime.h>
-NSString *const kTableDefault     = @"Localizable";
-NSString *const kTableCodeMapping = @"CodeLocalizable";
-NSString *const kUserLanguage     = @"kUserLanguage";
 
-@implementation NSBundle (XCLocalized)
+#define kXCUserLanguageKey @"xc_userlanguage"
 
-static NSBundle *_localizedBundle = nil;
+static const char kBundleKey = 0;
 
-#pragma mark - life cycle
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Class class = [self class];
-        SEL originalSelector = @selector(localizedStringForKey:value:table:);
-        SEL swizzledSelector = @selector(xc_localizedStringForKey:value:table:);
-        
-        Method originalMethod = class_getInstanceMethod(class, originalSelector);
-        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-        
-        BOOL success = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
-        if (success) {
-            class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
-        }
-        else {
-            method_exchangeImplementations(originalMethod, swizzledMethod);
-        }
-    });
-}
+@interface BundleEx : NSBundle
 
-#pragma mark - Method Swizzling
-- (NSString *)xc_localizedStringForKey:(NSString *)key value:(nullable NSString *)value table:(nullable NSString *)tableName {
-    NSString *string = [NSBundle.localizedBundle xc_localizedStringForKey:key value:nil table:tableName ?: kTableDefault];
-    return string ?: key;
-}
+@end
 
-#pragma mark - setup methods
-+ (NSBundle *)setupLocalizedBundle {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *userLanguage = [defaults objectForKey:kUserLanguage];
-    //用户未手动设置过语言
-    if (userLanguage.length == 0) {
-        NSArray *languages = [[NSBundle mainBundle] preferredLocalizations];
-        NSString *systemLanguage = languages.firstObject;
-        userLanguage = systemLanguage;
+@implementation BundleEx
+
+- (NSString *)localizedStringForKey:(NSString *)key value:(NSString *)value table:(NSString *)tableName
+{
+    NSBundle *bundle = objc_getAssociatedObject(self, &kBundleKey);
+    if (bundle) {
+        return [bundle localizedStringForKey:key value:value table:tableName];
     }
-    //将香港和台湾的繁体统统转为繁体
-    if ([userLanguage isEqualToString:@"zh-HK"] || [userLanguage isEqualToString:@"zh-TW"]) {
-        userLanguage = @"zh-Hant";
+    else {
+        return [super localizedStringForKey:key value:value table:tableName];
     }
-    NSString *path = [[NSBundle mainBundle] pathForResource:userLanguage ofType:@"lproj"];
-    return [NSBundle bundleWithPath:path];
-}
-
-#pragma mark - public methods
-- (void)setUserLanguage:(NSString *)language {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *path = [[NSBundle mainBundle] pathForResource:language ofType:@"lproj"];
-    [NSBundle setLocalizedBundle:[NSBundle bundleWithPath:path]];
-    [defaults setObject:language forKey:kUserLanguage];
-    [defaults synchronize];
-}
-
-- (NSString *)currentLanguage {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *userLanguage = [defaults objectForKey:kUserLanguage];
-    
-    if (userLanguage.length == 0) {
-        NSArray *languages = [[NSBundle mainBundle] preferredLocalizations];
-        NSString *systemLanguage = languages.firstObject;
-        return systemLanguage;
-    }
-    return userLanguage;
-}
-
-- (NSString *)stringWithKey:(NSString *)key {
-    return [self stringWithKey:key table:kTableDefault];
-}
-
-- (NSString *)stringWithKey:(NSString *)key table:(NSString *)tableName {
-    return [self xc_localizedStringForKey:key value:nil table:tableName ?: kTableDefault];
-}
-
-#pragma mark - getter & setter
-+ (NSBundle *)localizedBundle {
-    if (!_localizedBundle) {
-        _localizedBundle = [NSBundle setupLocalizedBundle];
-    }
-    return _localizedBundle;
-}
-
-+ (void)setLocalizedBundle:(NSBundle *)localizedBundle {
-    _localizedBundle = localizedBundle;
 }
 
 @end
+
+
+@implementation NSBundle (XCLocalized)
+
++ (void)setLanguage:(NSString *)language
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        object_setClass([NSBundle mainBundle],[BundleEx class]);
+    });
+    [[NSUserDefaults standardUserDefaults] setObject:language forKey:kXCUserLanguageKey];
+    id value = language ? [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:language ofType:@"lproj"]] : nil;
+    objc_setAssociatedObject([NSBundle mainBundle], &kBundleKey, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
++(NSString*)currentLanguage{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:kXCUserLanguageKey];
+}
+@end
+

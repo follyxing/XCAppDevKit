@@ -9,6 +9,7 @@
 #import "XCAppUtil.h"
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "NSBundle+XCLocalized.h"
 @implementation XCAppUtil
 NSString * XCAppVersion()
 {
@@ -64,6 +65,10 @@ NSString * XCCachePath()
 NSString * XCTmpPath()
 {
     return NSTemporaryDirectory();
+}
+NSString * XCCurrentLanguage()
+{
+    return [NSBundle currentLanguage];
 }
 BOOL XCIsLocationServicesAvailableOrNotDetermined()
 {
