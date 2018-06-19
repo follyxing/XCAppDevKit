@@ -31,5 +31,6 @@
 
 #import "XCVerticalAlignmentLabel.h"
 
+#import "NSURL+QueryParser.h"
 #import "XCURLParser.h"
 #endif /* XCAppDevKit_h */
