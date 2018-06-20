@@ -40,7 +40,10 @@ static const char kBundleKey = 0;
 }
 
 +(NSString*)currentLanguage{
-    return [[NSUserDefaults standardUserDefaults] stringForKey:kXCUserLanguageKey];
+    
+    NSArray *languages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
+    NSString *locLang = [languages objectAtIndex:0]; 
+    return [[NSUserDefaults standardUserDefaults] stringForKey:kXCUserLanguageKey]?:locLang;
 }
 @end
 
