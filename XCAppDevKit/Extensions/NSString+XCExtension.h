@@ -271,4 +271,11 @@
  @return string
  */
 - (NSString *)stringByReplacingStringsFromDictionary:(NSDictionary *)dict;
+
+/**
+ remove all emoji form string
+
+ @return no emoji string
+ */
+- (NSString *)removeEmoji;
 @end
