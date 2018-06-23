@@ -97,7 +97,9 @@ NSString * XCTmpPath(void);
 
  @return current language
  */
-NSString * XCCurrentLanguage();
+NSString * XCCurrentLanguage(void);
+
+BOOL XCIsBlankString(NSString* str);
 
 /**
  *  @brief Check whether location services available. This is an expensive call. It should not be called frequently or from performance sensitive code.
