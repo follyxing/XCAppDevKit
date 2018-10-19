@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIButton (XCExtension)
-
 - (void)setEnlargeTouchArea:(CGFloat)area;
 
 - (void)setEnlargeEdgeWithTop:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right;
+
 @end

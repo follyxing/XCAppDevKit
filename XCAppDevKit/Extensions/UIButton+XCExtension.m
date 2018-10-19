@@ -14,6 +14,7 @@ static char topNameKey;
 static char rightNameKey;
 static char bottomNameKey;
 static char leftNameKey;
+static NSString *contextModelKey = @"contextModelKey";
 
 - (void)setEnlargeTouchArea:(CGFloat)area
 {
@@ -55,4 +56,5 @@ static char leftNameKey;
     }
     return CGRectContainsPoint(rect, point) ? YES : NO;
 }
+
 @end
