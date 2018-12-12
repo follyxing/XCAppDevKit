@@ -278,4 +278,12 @@
  @return no emoji string
  */
 - (NSString *)removeEmoji;
+
+
+/**
+ generate a random string
+
+ @return random string
+ */
++ (NSString *)randomString;
 @end

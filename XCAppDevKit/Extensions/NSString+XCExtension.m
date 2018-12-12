@@ -435,4 +435,10 @@
                                                           withTemplate:@""];
     return modifiedString;
 }
++ (NSString *)randomString{
+    NSString * s0 = [NSNumber numberWithInt:arc4random()].stringValue;
+    NSString * s1 = [NSNumber numberWithInt:arc4random()].stringValue;
+    NSString * s2 = [NSNumber numberWithInt:arc4random()].stringValue;
+    return [[NSString stringWithFormat:@"%@_%@_%@",s0,s1,s2] sha256String];
+}
 @end
